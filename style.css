@@ -1,5 +1,11 @@
+:root {
+    --main-color: #D4ECDD;
+    --text-color: #152D35;
+    --button-color: #345B63;
+    --other-color: #112031;
+}
 body {
-    background-color: #F0A500;
+    background-color: var(--main-color);
     margin: 0;
     padding: 0;
 }
@@ -8,7 +14,7 @@ body {
     margin: 15px;   
     font-size: 25px;
     text-align: center;
-    color: #000000;
+    color: var(--text-color);
 }
 
 .main-container {
@@ -19,13 +25,16 @@ body {
 }
 
 .book-card {
-    border: 3px solid #000;
+    border: 3px solid var(--other-color);
     border-radius: 7px;
     margin: 15px;
     padding: 5px 10px;
     width: 15%;
     height: 250px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .book-title {
@@ -52,11 +61,12 @@ body {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: #334756;
+    background-color: var(--button-color);
     transition: .3s;
+    cursor: pointer;
 }
 .add-button:hover {
-    filter:brightness(85%);
+    transform: scale(1.1);
 }
 .material-icons {
     color: white !important;
