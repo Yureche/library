@@ -8,17 +8,51 @@
     <title>Library</title>
 </head>
 <body>
+    
     <!-- Title -->
     <div class="main-title">
         <h1>Library</h1>
     </div>
     <!-- Books -->
     <div class="main-container">
+    </div>      
+     <!-- Button -->
+        <div class="button-container">
+            <button class="open-form"><span class="material-icons">add</span></button>
+        </div>
+    <!-- Pop Up Form -->
+    <div class="overlay">   
+         
     </div>
-    <!-- Button -->
-    <div class="button-container">
-        <button class="add-button"><span class="material-icons">add</span></button>
-    </div>
-    <script src="./app.js"></script>
+    <div class="form-container">
+        <button class="close-form">&times;</button>
+            <h1 class="form-title">Create Book</h1>
+            <form action="">
+                <div class="form-group">
+                    <label for="title">Book title:</label>
+                    <br>
+                    <input type="text" name="title" id="title" placeholder="" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="author">Book author:</label>
+                    <br>
+                    <input type="text" name="author" id="author" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="pages">Number of pages:</label>
+                    <br>
+                    <input type="number" name="pages" id="pages" placeholder="" autocomplete="off">
+                </div>
+                <label for="read">Have you read the book? </label>
+                <br>
+                <div class="switch-container">
+                    <label class="switch">
+                        <input type ="checkbox" name="read" id="read">
+                        <div class="slider round"></div>  
+             </form>
+        </div>
+            <button class="create-book" id="create-book">Create Book</button>
+        <script src="./app.js"></script>
 </body>
 </html>

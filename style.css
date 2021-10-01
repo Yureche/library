@@ -1,78 +1,191 @@
 :root {
-    --main-color: #D4ECDD;
-    --text-color: #152D35;
-    --button-color: #345B63;
-    --other-color: #112031;
+  --main-color: #d4ecdd;
+  --text-color: #152d35;
+  --button-color: #345b63;
+  --other-color: #112031;
 }
 body {
-    background-color: var(--main-color);
-    margin: 0;
-    padding: 0;
+  background-color: var(--main-color);
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat, sans-serif;
 }
 
 .main-title {
-    margin: 15px;   
-    font-size: 25px;
-    text-align: center;
-    color: var(--text-color);
+  margin: 15px;
+  font-size: 25px;
+  text-align: center;
+  color: var(--text-color);
 }
 
 .main-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-.book-card {
-    border: 3px solid var(--other-color);
-    border-radius: 7px;
-    margin: 15px;
-    padding: 5px 10px;
-    width: 15%;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.open-form {
+  border-radius: 50%;
+  padding: 20px;
+  border: none;
+  outline: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--button-color);
+  transition: 0.3s;
+  cursor: pointer;
 }
 
-.book-title {
-    font-size: 30px;
+.open-form:hover {
+  transform: scale(1.1);
 }
 
-.author {
-    font-size: 20px;
-}
-
-
-@media all and (max-width:650px) {
-    .book-card {
-        width: 80%;
-        margin: 15px auto;
-    }
-}
-
-.add-button {
-    border-radius: 50%;
-    padding: 20px;
-    border: none;
-    outline: none;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: var(--button-color);
-    transition: .3s;
-    cursor: pointer;
-}
-.add-button:hover {
-    transform: scale(1.1);
-}
 .material-icons {
-    color: white !important;
+  color: white !important;
 }
 
+.overlay {
+  position: fixed;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
 
+.form-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  z-index: 10;
+  transition: 200ms ease-in-out;
+}
 
+form {
+  padding: 15px;
+  line-height: 1.6;
+  color: #112031;
+}
 
+form input {
+  outline: none;
+  border-radius: 5px;
+  border-color: #112031;
+  padding: 4px;
+  width: 100%;
+}
 
+form input:focus {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+form label {
+  font-size: 20px;
+  margin: 0;
+}
+.close-form {
+  align-self: flex-end;
+  border: none;
+  background: none;
+  font-size: 2em;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.close-form:hover {
+  transform: rotate(90deg);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333333;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16.8px;
+  width: 16px;
+  left: 1.6px;
+  bottom: 1.6px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #0cb60c;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #0cb60c;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20.8px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.create-book {
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  text-align: center;
+  border: 0;
+  padding: 8px 18px;
+  min-height: 45px;
+  min-width: 45px;
+  color: #ffffff;
+  background: #008060;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
+    rgba(0, 0, 0, 0.2) 0px -1px 0px 0px inset;
+  transition: 0.25s;
+  margin: 5px;
+  position: relative;
+  bottom: 5px;
+}
+
+.create-book:hover {
+  background: #006e52;
+}
