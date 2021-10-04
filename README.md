@@ -1,5 +1,4 @@
 # Library
 
-# Live preview:
-
-# http://yureche.github.io/library/
+Live preview:
+http://yureche.github.io/library/
