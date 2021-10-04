@@ -27,13 +27,41 @@
       <button class="close-form">&times;</button>
       <h2 class="form-title">Create a book</h2>
       <form action="">
-        <input type="text" class="input" id="title" placeholder="Title" />
-        <input type="text" class="input" id="author" placeholder="Author" />
-        <input type="number" class="input" id="pages" placeholder="Pages" />
+        <input
+          type="text"
+          class="input"
+          id="title"
+          placeholder="Title"
+          autocomplete="off"
+        />
+        <input
+          type="text"
+          class="input"
+          id="author"
+          placeholder="Author"
+          autocomplete="off"
+        />
+        <input
+          type="number"
+          class="input"
+          id="pages"
+          placeholder="Pages"
+          autocomplete="off"
+        />
+        <input
+          type="text"
+          class="input"
+          id="img-url"
+          placeholder="Image URL (optional)"
+        />
         <br />
+        <label for="" class="checkbox"
+          >Have you read the book?<input id="read" type="checkbox"
+        /></label>
         <button class="create-book" id="submit-book">Submit</button>
       </form>
     </div>
+
     <script src="./app.js"></script>
   </body>
 </html>

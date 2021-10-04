@@ -68,23 +68,26 @@ body {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
   pointer-events: none;
 }
 
 .form-container {
+  z-index: 11;
   margin: auto;
   width: 100%;
   max-width: 300px;
-  max-height: 330;
+  max-height: 405;
   background: #fff;
   border-radius: 7px;
   padding: 7px;
-  display: flex;
   flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  display: none;
+  display: flex;
 }
 
 form {
@@ -107,6 +110,8 @@ form {
 
 .form-title {
   align-self: center;
+  font-size: 27px;
+  margin: 15px;
 }
 
 .input {
@@ -134,11 +139,23 @@ form {
   padding: 7px;
 }
 
+.input:last-of-type {
+  margin: 10px 10px 0;
+}
+
 .input:focus {
   box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px,
     rgb(58 151 212 / 36%) 0px 0px 0px 4px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
     rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
     rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+}
+
+.checkbox {
+  margin: 0 10px 15px 11.5px;
+}
+
+.checkbox input {
+  vertical-align: middle;
 }
 
 .create-book {
@@ -151,8 +168,8 @@ form {
   font-weight: 500;
   transition: 0.2s;
   width: 100px;
-  bottom: 7px;
-  position: relative;
+  /* bottom: 7px;
+  position: relative; */
 }
 
 .create-book:hover {
