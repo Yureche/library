@@ -1,58 +1,39 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
     <title>Library</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <!-- Title -->
     <div class="main-title">
-        <h1>Library</h1>
+      <h1>Library</h1>
     </div>
     <!-- Books -->
-    <div class="main-container">
-    </div>      
-     <!-- Button -->
-        <div class="button-container">
-            <button class="open-form"><span class="material-icons">add</span></button>
-        </div>
-    <!-- Pop Up Form -->
-    <div class="overlay">   
-         
+    <div class="main-container"></div>
+    <!-- Button -->
+    <div class="button-container">
+      <button class="open-form"><span class="material-icons">add</span></button>
     </div>
+    <!-- Pop Up Form -->
+    <div class="overlay"></div>
     <div class="form-container">
-        <button class="close-form">&times;</button>
-            <h1 class="form-title">Create Book</h1>
-            <form action="">
-                <div class="form-group">
-                    <label for="title">Book title:</label>
-                    <br>
-                    <input type="text" name="title" id="title" placeholder="" autocomplete="off">
-                </div>
-
-                <div class="form-group">
-                    <label for="author">Book author:</label>
-                    <br>
-                    <input type="text" name="author" id="author" placeholder="" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="pages">Number of pages:</label>
-                    <br>
-                    <input type="number" name="pages" id="pages" placeholder="" autocomplete="off">
-                </div>
-                <label for="read">Have you read the book? </label>
-                <br>
-                <div class="switch-container">
-                    <label class="switch">
-                        <input type ="checkbox" name="read" id="read">
-                        <div class="slider round"></div>  
-             </form>
-        </div>
-            <button class="create-book" id="create-book">Create Book</button>
-        <script src="./app.js"></script>
-</body>
+      <button class="close-form">&times;</button>
+      <h2 class="form-title">Create a book</h2>
+      <form action="">
+        <input type="text" class="input" id="title" placeholder="Title" />
+        <input type="text" class="input" id="author" placeholder="Author" />
+        <input type="number" class="input" id="pages" placeholder="Pages" />
+        <br />
+        <button class="create-book" id="submit-book">Submit</button>
+      </form>
+    </div>
+    <script src="./app.js"></script>
+  </body>
 </html>
