@@ -145,8 +145,28 @@ form {
 .input:focus {
   box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px,
     rgb(58 151 212 / 36%) 0px 0px 0px 4px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(87 64 60 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+}
+
+.error {
+  position: relative;
+  animation: shake 0.1s linear;
+  animation-iteration-count: 5;
+  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px,
+    rgb(212 76 58 / 36%) 0px 0px 0px 4px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
     rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
     rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+}
+
+@keyframes shake {
+  0% {
+    left: -3px;
+  }
+
+  100% {
+    right: -3px;
+  }
 }
 
 .checkbox {
