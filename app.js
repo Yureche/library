@@ -10,7 +10,9 @@ const createBookButton = document.querySelector("#submit-book");
 const overlay = document.querySelector(".overlay");
 const formContainer = document.querySelector(".form-container");
 
-const inputFields = document.querySelectorAll(".input:not(#img-url)");
+const inputFields = Array.from(
+  document.querySelectorAll(".input:not(#img-url)")
+);
 
 // ! Validating the form
 const form = document.querySelector("form");
@@ -22,7 +24,9 @@ function validate(e) {
       // remove the class after the animation completes
       setTimeout(function () {
         input.classList.remove("error");
-      }, 300);
+      }, 500);
+    } else if (inputFields.every((input) => input.value.trim() !== "")) {
+      closeForm();
     }
   });
 
