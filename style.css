@@ -27,10 +27,119 @@ body {
 
 .main-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
+.book-card {
+  background-color: #fff;
+  width: 275px;
+  height: 350px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 7px;
+  text-align: center;
+}
+
+.book-title {
+  margin: 15px auto;
+  text-align: center;
+}
+
+.book-image {
+  height: 150px;
+  width: 95px;
+  border-radius: 3px;
+  margin: 0 auto;
+  display: block;
+}
+
+.book-author,
+.book-pages {
+  font-size: 17px;
+  margin: 15px;
+}
+
+.read-container {
+  font-size: 17px;
+  margin: 27px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 0;
+}
+
+.switch-container {
+  margin: 20px 5px;
+}
+
+/* ! Switch Start*/
+.create-book:hover {
+  filter: brightness(90%);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 13.6px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10.4px;
+  width: 10.4px;
+  left: 1.6px;
+  bottom: 1.6px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(10.4px);
+  -ms-transform: translateX(10.4px);
+  transform: translateX(10.4px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 13px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* ! Switch End */
 
 .open-form {
   border-radius: 50%;
@@ -122,11 +231,11 @@ form {
     rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px,
     rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
     rgb(0 0 0 / 0%) 0px 0px 0px 0px;
-  border-radius: 4px;
+  border-radius: 13px 5px;
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  padding: 4px 8px;
+  padding: 6px 10px;
   min-height: 28px;
   vertical-align: middle;
   transition: background-color 0.24s, box-shadow 0.24s;
@@ -189,8 +298,4 @@ form {
   width: 100px;
   /* bottom: 7px;
   position: relative; */
-}
-
-.create-book:hover {
-  filter: brightness(90%);
 }
