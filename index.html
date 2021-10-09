@@ -16,7 +16,65 @@
       <h1>Library</h1>
     </div>
     <!-- Books -->
-    <div class="main-container"></div>
+    <div class="main-container">
+      <div class="book-card">
+        <h2 class="book-title">The Hobbit</h2>
+        <img
+          src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9780/2611/9780261102217.jpg"
+          alt=""
+          class="book-image"
+        />
+        <p class="book-author">Author: J.R.R Tolkin</p>
+        <p class="book-pages">Pages: 400</p>
+        <div class="read-container">
+          <p>Read:</p>
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="read-switch" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="book-card">
+        <h2 class="book-title">Rich Dad Poor Dad</h2>
+        <img
+          src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9781/6126/9781612680194.jpg"
+          alt=""
+          class="book-image"
+        />
+        <p class="book-author">Author: Robert T Kiyosaki</p>
+        <p class="book-pages">Pages: 336</p>
+        <div class="read-container">
+          <p>Read:</p>
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" checked id="read-switch" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="book-card">
+        <h2 class="book-title">The Hobbit</h2>
+        <img
+          src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5932/9780593207093.jpg"
+          alt=""
+          class="book-image"
+        />
+        <p class="book-author">Author: James Clear</p>
+        <p class="book-pages">Pages: 256</p>
+        <div class="read-container">
+          <p>Read:</p>
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="read-switch" />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Button -->
     <div class="button-container">
       <button class="open-form"><span class="material-icons">add</span></button>
@@ -53,6 +111,7 @@
           class="input"
           id="img-url"
           placeholder="Image URL (optional)"
+          autocomplete="off"
         />
         <br />
         <label for="" class="checkbox"
