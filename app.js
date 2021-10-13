@@ -14,6 +14,14 @@ const inputFields = Array.from(
   document.querySelectorAll(".input:not(#img-url)")
 );
 
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pagesInput = document.getElementById("pages");
+const imageInput = document.getElementById("img-url");
+const readInput = document.getElementById("read");
+
+let defaultImgUrl = "./Images/notAvailable.jpg";
+
 // ! Validating the form
 const form = document.querySelector("form");
 function validate(e) {
@@ -26,7 +34,9 @@ function validate(e) {
         input.classList.remove("error");
       }, 500);
     } else if (inputFields.every((input) => input.value.trim() !== "")) {
+      addBook();
       closeForm();
+      library[library.length - 1].createBook();
     }
   });
 
@@ -35,13 +45,81 @@ function validate(e) {
 
 form.addEventListener("submit", validate);
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, image, index) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.image = image;
+  this.index = index;
 }
 
+function addBook() {
+  library.push(
+    new Book(
+      titleInput.value,
+      authorInput.value,
+      pagesInput.value,
+      readInput.checked,
+      imageInput.value
+    )
+  );
+}
+
+let hobbit = new Book(
+  "Hobbit",
+  "JRR",
+  234,
+  false,
+  "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9780/2611/9780261102217.jpg"
+);
+
+hobbit.dataset = "1";
+Book.prototype.changeReadStatus = function () {
+  this.read === true ? (this.read = false) : (this.read = true);
+};
+Book.prototype.createBook = function () {
+  let bookCard = document.createElement("div");
+  bookCard.className = "book-card";
+  mainContainer.appendChild(bookCard);
+
+  let bookTitle = document.createElement("h2");
+  bookTitle.className = "book-title";
+  bookTitle.innerHTML = ` ${this.title}`;
+  bookCard.appendChild(bookTitle);
+
+  let bookImage = document.createElement("img");
+  bookImage.className = "book-image";
+  bookImage.src = this.image;
+  bookCard.appendChild(bookImage);
+
+  let bookAuthor = document.createElement("p");
+  bookAuthor.className = "book-author";
+  bookAuthor.innerHTML = `Author: ${this.author}`;
+  bookCard.appendChild(bookAuthor);
+
+  let pages = document.createElement("p");
+  pages.innerHTML = `Pages: ${this.pages}`;
+  bookCard.appendChild(pages);
+
+  let readContainer = document.createElement("div");
+  bookCard.appendChild(readContainer);
+  readContainer.className = "read-container";
+  let readLabel = document.createElement("p");
+  readLabel.innerHTML = "Read:  ";
+  readContainer.appendChild(readLabel);
+  let switchLabel = document.createElement("label");
+  switchLabel.className = "switch";
+  readContainer.appendChild(switchLabel);
+  let switchInput = document.createElement("input");
+  switchInput.type = "checkbox";
+  switchInput.checked = readInput.checked;
+  switchInput.id = "read-switch";
+  switchLabel.appendChild(switchInput);
+  let switchSlider = document.createElement("span");
+  switchSlider.className = "slider round";
+  switchLabel.appendChild(switchSlider);
+};
 function openForm() {
   formContainer.style.display = "flex";
   overlay.style.opacity = 1;
@@ -62,5 +140,5 @@ closeFormButton.addEventListener("click", () => {
 });
 
 createBookButton.addEventListener("click", () => {
-  // createBook();
+  // addBook();
 });
