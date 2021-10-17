@@ -18,8 +18,35 @@ const pagesInput = document.getElementById("pages");
 const imageInput = document.getElementById("img-url");
 const readInput = document.getElementById("read");
 
-let defaultImgUrl = "./Images/notAvailable.jpg";
+// Couple of Books
+let theHobbit = new Book(
+  "The Hobbit",
+  "J.R.R Tolkin",
+  400,
+  false,
+  "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9780/2611/9780261102217.jpg",
+  0
+);
 
+let richPoorDad = new Book(
+  "Rich Dad Poor Dad",
+  "Robert T Kiyosaki",
+  336,
+  true,
+  "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9781/6126/9781612680194.jpg",
+  1
+);
+
+let atomicHabits = new Book(
+  "Atomic Habits",
+  "James Clear",
+  256,
+  false,
+  "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5932/9780593207093.jpg",
+  2
+);
+
+library.push(theHobbit, richPoorDad, atomicHabits);
 // ! Validating the form
 const form = document.querySelector("form");
 function validate(e) {
@@ -47,6 +74,7 @@ function Book(title, author, pages, read, image, id) {
   this.pages = pages;
   this.read = read;
   this.image = image;
+  this.id = id;
 }
 
 function addBook() {
@@ -56,9 +84,16 @@ function addBook() {
       authorInput.value,
       pagesInput.value,
       readInput.checked,
-      imageInput.value
+      imageInput.value,
+      library.length
     )
   );
+}
+
+// Remove book from the page
+function removeElement(id) {
+  const elem = document.getElementById(id);
+  return elem.parentNode.removeChild(elem);
 }
 
 Book.prototype.changeReadStatus = function () {
@@ -67,6 +102,7 @@ Book.prototype.changeReadStatus = function () {
 Book.prototype.createBook = function () {
   let bookCard = document.createElement("div");
   bookCard.className = "book-card";
+  bookCard.id = `${this.id}`;
   mainContainer.appendChild(bookCard);
 
   let bookTitle = document.createElement("h2");
@@ -129,4 +165,9 @@ createBookButton.addEventListener("click", () => {
   addBook();
   closeForm();
   library.at(-1).createBook();
+});
+
+// ! DELETE
+library.forEach((book) => {
+  book.createBook();
 });
