@@ -128,4 +128,5 @@ closeFormButton.addEventListener("click", () => {
 createBookButton.addEventListener("click", () => {
   addBook();
   closeForm();
+  library.at(-1).createBook();
 });
