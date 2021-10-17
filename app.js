@@ -10,9 +10,7 @@ const createBookButton = document.querySelector("#submit-book");
 const overlay = document.querySelector(".overlay");
 const formContainer = document.querySelector(".form-container");
 
-const inputFields = Array.from(
-  document.querySelectorAll(".input:not(#img-url)")
-);
+const inputFields = Array.from(document.querySelectorAll(".input"));
 
 const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
@@ -34,9 +32,7 @@ function validate(e) {
         input.classList.remove("error");
       }, 500);
     } else if (inputFields.every((input) => input.value.trim() !== "")) {
-      addBook();
-      closeForm();
-      library[library.length - 1].createBook();
+      library.push();
     }
   });
 
@@ -45,13 +41,12 @@ function validate(e) {
 
 form.addEventListener("submit", validate);
 
-function Book(title, author, pages, read, image, index) {
+function Book(title, author, pages, read, image, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
   this.image = image;
-  this.index = index;
 }
 
 function addBook() {
@@ -66,15 +61,6 @@ function addBook() {
   );
 }
 
-let hobbit = new Book(
-  "Hobbit",
-  "JRR",
-  234,
-  false,
-  "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9780/2611/9780261102217.jpg"
-);
-
-hobbit.dataset = "1";
 Book.prototype.changeReadStatus = function () {
   this.read === true ? (this.read = false) : (this.read = true);
 };
@@ -140,5 +126,6 @@ closeFormButton.addEventListener("click", () => {
 });
 
 createBookButton.addEventListener("click", () => {
-  // addBook();
+  addBook();
+  closeForm();
 });
