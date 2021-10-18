@@ -50,6 +50,11 @@ library.push(theHobbit, richPoorDad, atomicHabits);
 // ! Validating the form
 const form = document.querySelector("form");
 function validate(e) {
+  if (inputFields.every((input) => input.value.trim() !== "")) {
+    addBook();
+    closeForm();
+    library.at(-1).createBook();
+  }
   inputFields.forEach((input) => {
     if (input.value.trim() == "") {
       // Add a class that defines an animation
@@ -58,8 +63,6 @@ function validate(e) {
       setTimeout(function () {
         input.classList.remove("error");
       }, 500);
-    } else if (inputFields.every((input) => input.value.trim() !== "")) {
-      library.push();
     }
   });
 
@@ -161,11 +164,10 @@ closeFormButton.addEventListener("click", () => {
   closeForm();
 });
 
-createBookButton.addEventListener("click", () => {
-  addBook();
-  closeForm();
-  library.at(-1).createBook();
-});
+// createBookButton.addEventListener("click", () => {
+//   addBook();
+//   closeForm();
+// });
 
 // ! DELETE
 library.forEach((book) => {
