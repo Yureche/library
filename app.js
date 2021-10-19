@@ -46,7 +46,6 @@ let atomicHabits = new Book(
   2
 );
 
-library.push(theHobbit, richPoorDad, atomicHabits);
 // ! Validating the form
 const form = document.querySelector("form");
 function validate(e) {
@@ -144,6 +143,8 @@ Book.prototype.createBook = function () {
   let switchSlider = document.createElement("span");
   switchSlider.className = "slider round";
   switchLabel.appendChild(switchSlider);
+
+  localStorage[this.id] = JSON.stringify(this);
 };
 function openForm() {
   formContainer.style.display = "flex";
@@ -169,7 +170,36 @@ closeFormButton.addEventListener("click", () => {
 //   closeForm();
 // });
 
-// ! DELETE
-library.forEach((book) => {
-  book.createBook();
+function removeElement(id) {
+  const elem = document.getElementById(id);
+  localStorage.removeItem(id);
+  return elem.parentNode.removeChild(elem);
+}
+// library.push(theHobbit, richPoorDad, atomicHabits);
+library.forEach((object) => {
+  localStorage[object.id] = JSON.stringify(object);
 });
+
+function jsonToObject() {
+  library = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    let book = JSON.parse(localStorage[i]);
+    library.push(
+      new Book(
+        book.title,
+        book.author,
+        book.pages,
+        book.read,
+        book.image,
+        book.id
+      )
+    );
+  }
+  library.forEach((book) => {
+    book.createBook();
+  });
+}
+
+window.onload = () => {
+  jsonToObject();
+};
