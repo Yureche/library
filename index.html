@@ -16,14 +16,33 @@
       <h1>Library</h1>
     </div>
     <!-- Books -->
-    <div class="main-container"></div>
+    <div class="main-container">
+      <div class="book-card" id="0">
+        <button class="close-form">&times;</button>
+        <h2 class="book-title">Atomic Habbits</h2>
+        <img
+          class="book-image"
+          src="https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5932/9780593207093.jpg"
+        />
+        <p class="book-author">Author: Jason</p>
+        <p>Pages: 123</p>
+        <div class="read-container">
+          <p>Read:</p>
+          <label class="switch"
+            ><input type="checkbox" id="read-switch" /><span
+              class="slider round"
+            ></span
+          ></label>
+        </div>
+      </div>
+    </div>
     <!-- Button -->
     <div class="button-container">
       <button class="open-form"><span class="material-icons">add</span></button>
     </div>
     <!-- Pop Up Form -->
-    <div class="overlay hidden"></div>
-    <div class="form-container hidden">
+    <div class="overlay"></div>
+    <div class="form-container">
       <button class="close-form">&times;</button>
       <h2 class="form-title">Create a book</h2>
       <form action="">
