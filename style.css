@@ -50,9 +50,17 @@ body {
   margin: 0;
 }
 
-.book-card .close-form {
+.book-card .remove-book {
   align-self: flex-end;
   margin: 0;
+  border: none;
+  background: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.book-card .remove-book:hover {
+  transform: rotate(90deg);
 }
 
 .book-title {
