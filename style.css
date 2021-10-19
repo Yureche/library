@@ -64,7 +64,7 @@ body {
 }
 
 .book-title {
-  margin: 15px auto;
+  margin: 0 auto 15px auto;
   text-align: center;
 }
 
