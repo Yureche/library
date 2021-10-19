@@ -4,6 +4,7 @@ let library = [];
 // Buttons to open and close the form
 const openFormButton = document.querySelector(".open-form");
 const closeFormButton = document.querySelector(".close-form");
+// Button to remove the bookCard
 
 const createBookButton = document.querySelector("#submit-book");
 // Create book Form
@@ -95,6 +96,8 @@ function addBook() {
 // Remove book from the page
 function removeElement(id) {
   const elem = document.getElementById(id);
+  localStorage.removeItem(id);
+  library.splice(id);
   return elem.parentNode.removeChild(elem);
 }
 
@@ -106,6 +109,11 @@ Book.prototype.createBook = function () {
   bookCard.className = "book-card";
   bookCard.id = `${this.id}`;
   mainContainer.appendChild(bookCard);
+
+  let removeBook = document.createElement("button");
+  removeBook.className = "remove-book";
+  removeBook.innerHTML = "&times;";
+  bookCard.appendChild(removeBook);
 
   let bookTitle = document.createElement("h2");
   bookTitle.className = "book-title";
@@ -145,6 +153,12 @@ Book.prototype.createBook = function () {
   switchLabel.appendChild(switchSlider);
 
   localStorage[this.id] = JSON.stringify(this);
+  const removeBookCardButton = document.querySelectorAll(".remove-book");
+  removeBookCardButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      removeElement(this.id);
+    });
+  });
 };
 function openForm() {
   formContainer.style.display = "flex";
@@ -170,11 +184,6 @@ closeFormButton.addEventListener("click", () => {
 //   closeForm();
 // });
 
-function removeElement(id) {
-  const elem = document.getElementById(id);
-  localStorage.removeItem(id);
-  return elem.parentNode.removeChild(elem);
-}
 // library.push(theHobbit, richPoorDad, atomicHabits);
 library.forEach((object) => {
   localStorage[object.id] = JSON.stringify(object);
