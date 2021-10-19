@@ -19,34 +19,6 @@ const pagesInput = document.getElementById("pages");
 const imageInput = document.getElementById("img-url");
 const readInput = document.getElementById("read");
 
-// Couple of Books
-let theHobbit = new Book(
-  "The Hobbit",
-  "J.R.R Tolkin",
-  400,
-  false,
-  "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9780/2611/9780261102217.jpg",
-  0
-);
-
-let richPoorDad = new Book(
-  "Rich Dad Poor Dad",
-  "Robert T Kiyosaki",
-  336,
-  true,
-  "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/mid/9781/6126/9781612680194.jpg",
-  1
-);
-
-let atomicHabits = new Book(
-  "Atomic Habits",
-  "James Clear",
-  256,
-  false,
-  "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5932/9780593207093.jpg",
-  2
-);
-
 // ! Validating the form
 const form = document.querySelector("form");
 function validate(e) {
