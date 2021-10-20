@@ -1,30 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-:root {
-  --main-color: #d4ecdd;
-  --text-color: #152d35;
-  --button-color: #345b63;
-  --other-color: #112031;
-}
-
+@import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
 *,
-*::after,
-*::before {
+::after,
+::before {
   box-sizing: border-box;
 }
 body {
-  background-color: var(--main-color);
+  background-color: #d4ecdd;
   margin: 0;
   padding: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: Montserrat, sans-serif;
 }
-
 .main-title {
   margin: 15px;
   font-size: 25px;
   text-align: center;
-  color: var(--text-color);
+  color: #152d35;
 }
-
 .main-container {
   display: flex;
   flex-direction: row;
@@ -45,16 +36,14 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 .book-card > * {
   margin: 0;
 }
-
 .book-card .remove-book {
   align-self: flex-end;
   margin: 0;
   border: none;
-  background: none;
+  background: 0 0;
   font-size: 1.2em;
   cursor: pointer;
   transition: 0.4s;
@@ -62,12 +51,10 @@ body {
 .book-card .remove-book:hover {
   transform: rotate(90deg);
 }
-
 .book-title {
   margin: 0 auto 15px auto;
   text-align: center;
 }
-
 .book-image {
   height: 150px;
   width: 95px;
@@ -75,13 +62,11 @@ body {
   margin: 0 auto;
   display: block;
 }
-
 .book-author,
 .book-pages {
   font-size: 17px;
   margin: 15px;
 }
-
 .read-container {
   font-size: 17px;
   margin: 27px;
@@ -91,29 +76,23 @@ body {
   align-items: center;
   height: 0;
 }
-
 .switch-container {
   margin: 20px 5px;
 }
-
-/* ! Switch Start*/
 .create-book:hover {
   filter: brightness(90%);
 }
-
 .switch {
   position: relative;
   display: inline-block;
   width: 24px;
   height: 13.6px;
 }
-
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .slider {
   position: absolute;
   cursor: pointer;
@@ -125,7 +104,6 @@ body {
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -133,63 +111,51 @@ body {
   width: 10.4px;
   left: 1.6px;
   bottom: 1.6px;
-  background-color: white;
+  background-color: #fff;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-
 input:checked + .slider {
   background-color: #2196f3;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px #2196f3;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(10.4px);
   -ms-transform: translateX(10.4px);
   transform: translateX(10.4px);
 }
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 13px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
-/* ! Switch End */
-
 .open-form {
   border-radius: 50%;
   padding: 20px;
   border: none;
-  outline: none;
+  outline: 0;
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: var(--button-color);
+  background-color: #345b63;
   transition: 0.3s;
   cursor: pointer;
   z-index: 5;
 }
-
 .open-form:hover {
   transform: scale(1.1);
 }
-
 @media all and (max-width: 600px) {
   .open-form {
     padding: 10px;
   }
 }
-
 .material-icons {
-  color: white !important;
+  color: #fff !important;
 }
-
 .overlay {
   position: fixed;
   opacity: 0;
@@ -201,7 +167,6 @@ input:checked + .slider:before {
   z-index: 10;
   pointer-events: none;
 }
-
 .form-container {
   z-index: 11;
   margin: auto;
@@ -218,43 +183,36 @@ input:checked + .slider:before {
   transform: translateX(-50%) translateY(-50%);
   display: none;
 }
-
 form {
   display: flex;
   flex-direction: column;
 }
-
 .close-form {
   border: none;
-  background: none;
+  background: 0 0;
   font-size: 1.2em;
   cursor: pointer;
   transition: 0.4s;
 }
-
 .form-container .close-form {
   align-self: flex-end;
 }
-
 .close-form:hover {
   transform: rotate(90deg);
 }
-
 .form-title {
   align-self: center;
   font-size: 27px;
   margin: 15px;
 }
-
 .input {
   border: 0;
   outline: 0;
-  color: rgb(60, 66, 87);
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 16%) 0px 0px 0px 1px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+  color: #3c4257;
+  background-color: #fff;
+  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0,
+    rgb(0 0 0 / 0%) 0 0 0 0, rgb(60 66 87 / 16%) 0 0 0 1px,
+    rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0;
   border-radius: 5px;
   font-size: 14px;
   line-height: 20px;
@@ -270,46 +228,36 @@ form {
   margin: 10px;
   padding: 7px;
 }
-
 .input:last-of-type {
   margin: 10px 10px 0;
 }
-
 .input:focus {
-  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(58 151 212 / 36%) 0px 0px 0px 4px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(87 64 60 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(58 151 212 / 36%) 0 0 0 4px,
+    rgb(0 0 0 / 0%) 0 0 0 0, rgb(87 64 60 / 16%) 0 0 0 1px,
+    rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0;
 }
-
 .error {
   position: relative;
   animation: shake 0.1s linear;
   animation-iteration-count: 5;
-  box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(212 76 58 / 36%) 0px 0px 0px 4px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(60 66 87 / 16%) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px,
-    rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px;
+  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(212 76 58 / 36%) 0 0 0 4px,
+    rgb(0 0 0 / 0%) 0 0 0 0, rgb(60 66 87 / 16%) 0 0 0 1px,
+    rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0;
 }
-
 @keyframes shake {
   0% {
     left: -3px;
   }
-
   100% {
     right: -3px;
   }
 }
-
 .checkbox {
   margin: 0 10px 15px 11.5px;
 }
-
 .checkbox input {
   vertical-align: middle;
 }
-
 .create-book {
   border: none;
   padding: 7px;
@@ -320,6 +268,4 @@ form {
   font-weight: 500;
   transition: 0.2s;
   width: 100px;
-  /* bottom: 7px;
-  position: relative; */
 }

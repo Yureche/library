@@ -4,13 +4,12 @@ let library = [];
 // Buttons to open and close the form
 const openFormButton = document.querySelector(".open-form");
 const closeFormButton = document.querySelector(".close-form");
-// Button to remove the bookCard
 
-const createBookButton = document.querySelector("#submit-book");
 // Create book Form
 const overlay = document.querySelector(".overlay");
 const formContainer = document.querySelector(".form-container");
 
+// Form input fields
 const inputFields = Array.from(document.querySelectorAll(".input"));
 
 const titleInput = document.getElementById("title");
@@ -19,29 +18,27 @@ const pagesInput = document.getElementById("pages");
 const imageInput = document.getElementById("img-url");
 const readInput = document.getElementById("read");
 
-// ! Validating the form
 const form = document.querySelector("form");
-function validate(e) {
-  if (inputFields.every((input) => input.value.trim() !== "")) {
-    addBook();
-    closeForm();
-    library.at(-1).createBook();
-  }
-  inputFields.forEach((input) => {
-    if (input.value.trim() == "") {
-      // Add a class that defines an animation
-      input.classList.add("error");
-      // remove the class after the animation completes
-      setTimeout(function () {
-        input.classList.remove("error");
-      }, 500);
-    }
-  });
 
-  e.preventDefault();
+// ! Functions
+function removeElement(id) {
+  const elem = document.getElementById(id);
+  localStorage.removeItem(id);
+  library.splice(id);
+  return elem.parentNode.removeChild(elem);
 }
 
-form.addEventListener("submit", validate);
+function openForm() {
+  formContainer.style.display = "flex";
+  overlay.style.opacity = 1;
+  overlay.style.pointerEvents = "all";
+}
+
+function closeForm() {
+  formContainer.style.display = "none";
+  overlay.style.opacity = 0;
+  overlay.style.pointerEvents = "none";
+}
 
 function Book(title, author, pages, read, image, id) {
   this.title = title;
@@ -65,17 +62,6 @@ function addBook() {
   );
 }
 
-// Remove book from the page
-function removeElement(id) {
-  const elem = document.getElementById(id);
-  localStorage.removeItem(id);
-  library.splice(id);
-  return elem.parentNode.removeChild(elem);
-}
-
-Book.prototype.changeReadStatus = function () {
-  this.read === true ? (this.read = false) : (this.read = true);
-};
 Book.prototype.createBook = function () {
   let bookCard = document.createElement("div");
   bookCard.className = "book-card";
@@ -125,6 +111,7 @@ Book.prototype.createBook = function () {
   switchLabel.appendChild(switchSlider);
 
   localStorage[this.id] = JSON.stringify(this);
+
   const removeBookCardButton = document.querySelectorAll(".remove-book");
   removeBookCardButton.forEach((button) => {
     button.addEventListener("click", () => {
@@ -132,17 +119,28 @@ Book.prototype.createBook = function () {
     });
   });
 };
-function openForm() {
-  formContainer.style.display = "flex";
-  overlay.style.opacity = 1;
-  overlay.style.pointerEvents = "all";
+
+function validate(e) {
+  if (inputFields.every((input) => input.value.trim() !== "")) {
+    addBook();
+    closeForm();
+    library.at(-1).createBook();
+  }
+  inputFields.forEach((input) => {
+    if (input.value.trim() == "") {
+      // Add a class that defines an animation
+      input.classList.add("error");
+      // remove the class after the animation completes
+      setTimeout(function () {
+        input.classList.remove("error");
+      }, 500);
+    }
+  });
+
+  e.preventDefault();
 }
 
-function closeForm() {
-  formContainer.style.display = "none";
-  overlay.style.opacity = 0;
-  overlay.style.pointerEvents = "none";
-}
+// ! Event Listeners
 openFormButton.addEventListener("click", () => {
   openForm();
 });
@@ -151,12 +149,9 @@ closeFormButton.addEventListener("click", () => {
   closeForm();
 });
 
-// createBookButton.addEventListener("click", () => {
-//   addBook();
-//   closeForm();
-// });
+form.addEventListener("submit", validate);
 
-// library.push(theHobbit, richPoorDad, atomicHabits);
+// ! Local Storage
 library.forEach((object) => {
   localStorage[object.id] = JSON.stringify(object);
 });
@@ -181,6 +176,5 @@ function jsonToObject() {
   });
 }
 
-window.onload = () => {
-  jsonToObject();
-};
+// Running the function when the page loads the script
+jsonToObject();
