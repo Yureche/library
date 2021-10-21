@@ -49,6 +49,7 @@ function addBook() {
     )
   );
 }
+
 function validate(e) {
   inputFields.every((e) => "" !== e.value.trim()) &&
     (addBook(), closeForm(), library.at(-1).createBook()),
@@ -91,24 +92,24 @@ function jsonToObject() {
     bookCard.appendChild(removeBook);
   let bookTitle = document.createElement("h2");
   (bookTitle.className = "book-title"),
-    (bookTitle.innerHTML = ` ${this.title}`),
+    (bookTitle.innerText = ` ${this.title}`),
     bookCard.appendChild(bookTitle);
   let bookImage = document.createElement("img");
   (bookImage.className = "book-image"),
     (bookImage.src = this.image),
     bookCard.appendChild(bookImage);
-  let r = document.createElement("p");
-  (r.className = "book-author"),
-    (r.innerHTML = `Author: ${this.author}`),
-    bookCard.appendChild(r);
+  let bookAuthor = document.createElement("p");
+  (bookAuthor.className = "book-author"),
+    (bookAuthor.innerText = `Author: ${this.author}`),
+    bookCard.appendChild(bookAuthor);
   let bookPages = document.createElement("p");
-  (bookPages.innerHTML = `Pages: ${this.pages}`),
+  (bookPages.innerText = `Pages: ${this.pages}`),
     bookCard.appendChild(bookPages);
   let readStatusContainer = document.createElement("div");
   bookCard.appendChild(readStatusContainer),
     (readStatusContainer.className = "read-container");
   let readStatusLabel = document.createElement("p");
-  (readStatusLabel.innerHTML = "Read:  "),
+  (readStatusLabel.innerText = "Read:  "),
     readStatusContainer.appendChild(readStatusLabel);
   let switchLabel = document.createElement("label");
   (switchLabel.className = "switch"),
@@ -121,12 +122,10 @@ function jsonToObject() {
   let switchSpan = document.createElement("span");
   (switchSpan.className = "slider round"),
     switchLabel.appendChild(switchSpan),
-    (localStorage[this.id] = JSON.stringify(this)),
-    document.querySelectorAll(".remove-book").forEach((bookCard) => {
-      bookCard.addEventListener("click", () => {
-        removeElement(this.id);
-      });
-    });
+    (localStorage[this.id] = JSON.stringify(this));
+  removeBook.addEventListener("click", function (e) {
+    removeElement(e.target.parentNode.id);
+  });
 }),
   openFormButton.addEventListener("click", () => {
     openForm();
@@ -134,8 +133,8 @@ function jsonToObject() {
   closeFormButton.addEventListener("click", () => {
     closeForm();
   }),
-  form.addEventListener("submit", validate),
-  library.forEach((book) => {
-    localStorage[book.id] = JSON.stringify(book);
-  }),
+  form.addEventListener("submit", validate);
+library.forEach((book) => {
+  localStorage[book.id] = JSON.stringify(book);
+}),
   jsonToObject();
