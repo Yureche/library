@@ -1,54 +1,42 @@
-// ! Variables
-const mainContainer = document.querySelector(".main-container");
+const mainContainer = document.querySelector(".main-container"),
+  openFormButton = document.querySelector(".open-form"),
+  closeFormButton = document.querySelector(".close-form"),
+  overlay = document.querySelector(".overlay"),
+  formContainer = document.querySelector(".form-container"),
+  inputFields = Array.from(document.querySelectorAll(".input")),
+  titleInput = document.getElementById("title"),
+  authorInput = document.getElementById("author"),
+  pagesInput = document.getElementById("pages"),
+  imageInput = document.getElementById("img-url"),
+  readInput = document.getElementById("read"),
+  form = document.querySelector("form");
 let library = [];
-// Buttons to open and close the form
-const openFormButton = document.querySelector(".open-form");
-const closeFormButton = document.querySelector(".close-form");
-
-// Create book Form
-const overlay = document.querySelector(".overlay");
-const formContainer = document.querySelector(".form-container");
-
-// Form input fields
-const inputFields = Array.from(document.querySelectorAll(".input"));
-
-const titleInput = document.getElementById("title");
-const authorInput = document.getElementById("author");
-const pagesInput = document.getElementById("pages");
-const imageInput = document.getElementById("img-url");
-const readInput = document.getElementById("read");
-
-const form = document.querySelector("form");
-
-// ! Functions
 function removeElement(id) {
-  const elem = document.getElementById(id);
-  localStorage.removeItem(id);
-  library.splice(id);
-  return elem.parentNode.removeChild(elem);
+  const bookToRemove = document.getElementById(id);
+  return (
+    localStorage.removeItem(id),
+    library.splice(id),
+    bookToRemove.parentNode.removeChild(bookToRemove)
+  );
 }
-
 function openForm() {
-  formContainer.style.display = "flex";
-  overlay.style.opacity = 1;
-  overlay.style.pointerEvents = "all";
+  (formContainer.style.display = "flex"),
+    (overlay.style.opacity = 1),
+    (overlay.style.pointerEvents = "all");
 }
-
 function closeForm() {
-  formContainer.style.display = "none";
-  overlay.style.opacity = 0;
-  overlay.style.pointerEvents = "none";
+  (formContainer.style.display = "none"),
+    (overlay.style.opacity = 0),
+    (overlay.style.pointerEvents = "none");
 }
-
-function Book(title, author, pages, read, image, id) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.image = image;
-  this.id = id;
+function Book(title, author, pages, read, img, id) {
+  (this.title = title),
+    (this.author = author),
+    (this.pages = pages),
+    (this.read = read),
+    (this.image = img),
+    (this.id = id);
 }
-
 function addBook() {
   library.push(
     new Book(
@@ -61,113 +49,30 @@ function addBook() {
     )
   );
 }
-
-Book.prototype.createBook = function () {
-  let bookCard = document.createElement("div");
-  bookCard.className = "book-card";
-  bookCard.id = `${this.id}`;
-  mainContainer.appendChild(bookCard);
-
-  let removeBook = document.createElement("button");
-  removeBook.className = "remove-book";
-  removeBook.innerHTML = "&times;";
-  bookCard.appendChild(removeBook);
-
-  let bookTitle = document.createElement("h2");
-  bookTitle.className = "book-title";
-  bookTitle.innerHTML = ` ${this.title}`;
-  bookCard.appendChild(bookTitle);
-
-  let bookImage = document.createElement("img");
-  bookImage.className = "book-image";
-  bookImage.src = this.image;
-  bookCard.appendChild(bookImage);
-
-  let bookAuthor = document.createElement("p");
-  bookAuthor.className = "book-author";
-  bookAuthor.innerHTML = `Author: ${this.author}`;
-  bookCard.appendChild(bookAuthor);
-
-  let pages = document.createElement("p");
-  pages.innerHTML = `Pages: ${this.pages}`;
-  bookCard.appendChild(pages);
-
-  let readContainer = document.createElement("div");
-  bookCard.appendChild(readContainer);
-  readContainer.className = "read-container";
-  let readLabel = document.createElement("p");
-  readLabel.innerHTML = "Read:  ";
-  readContainer.appendChild(readLabel);
-  let switchLabel = document.createElement("label");
-  switchLabel.className = "switch";
-  readContainer.appendChild(switchLabel);
-  let switchInput = document.createElement("input");
-  switchInput.type = "checkbox";
-  switchInput.checked = readInput.checked;
-  switchInput.id = "read-switch";
-  switchLabel.appendChild(switchInput);
-  let switchSlider = document.createElement("span");
-  switchSlider.className = "slider round";
-  switchLabel.appendChild(switchSlider);
-
-  localStorage[this.id] = JSON.stringify(this);
-
-  const removeBookCardButton = document.querySelectorAll(".remove-book");
-  removeBookCardButton.forEach((button) => {
-    button.addEventListener("click", () => {
-      removeElement(this.id);
-    });
-  });
-};
-
 function validate(e) {
-  if (inputFields.every((input) => input.value.trim() !== "")) {
-    addBook();
-    closeForm();
-    library.at(-1).createBook();
-  }
-  inputFields.forEach((input) => {
-    if (input.value.trim() == "") {
-      // Add a class that defines an animation
-      input.classList.add("error");
-      // remove the class after the animation completes
-      setTimeout(function () {
-        input.classList.remove("error");
-      }, 500);
-    }
-  });
-
-  e.preventDefault();
+  inputFields.every((e) => "" !== e.value.trim()) &&
+    (addBook(), closeForm(), library.at(-1).createBook()),
+    inputFields.forEach((field) => {
+      "" == field.value.trim() &&
+        (field.classList.add("error"),
+        setTimeout(function () {
+          field.classList.remove("error");
+        }, 500));
+    }),
+    e.preventDefault();
 }
-
-// ! Event Listeners
-openFormButton.addEventListener("click", () => {
-  openForm();
-});
-
-closeFormButton.addEventListener("click", () => {
-  closeForm();
-});
-
-form.addEventListener("submit", validate);
-
-// ! Local Storage
-library.forEach((object) => {
-  localStorage[object.id] = JSON.stringify(object);
-});
-
 function jsonToObject() {
   library = [];
   for (let i = 0; i < localStorage.length; i++) {
-    let book = JSON.parse(localStorage[i]);
+    let currentBook = JSON.parse(localStorage[i]);
     library.push(
       new Book(
-        book.title,
-        book.author,
-        book.pages,
-        book.read,
-        book.image,
-        book.id
+        currentBook.title,
+        currentBook.author,
+        currentBook.pages,
+        currentBook.read,
+        currentBook.image,
+        currentBook.id
       )
     );
   }
@@ -175,6 +80,62 @@ function jsonToObject() {
     book.createBook();
   });
 }
-
-// Running the function when the page loads the script
-jsonToObject();
+(Book.prototype.createBook = function () {
+  let bookCard = document.createElement("div");
+  (bookCard.className = "book-card"),
+    (bookCard.id = `${this.id}`),
+    mainContainer.appendChild(bookCard);
+  let removeBook = document.createElement("button");
+  (removeBook.className = "remove-book"),
+    (removeBook.innerHTML = "&times;"),
+    bookCard.appendChild(removeBook);
+  let bookTitle = document.createElement("h2");
+  (bookTitle.className = "book-title"),
+    (bookTitle.innerHTML = ` ${this.title}`),
+    bookCard.appendChild(bookTitle);
+  let bookImage = document.createElement("img");
+  (bookImage.className = "book-image"),
+    (bookImage.src = this.image),
+    bookCard.appendChild(bookImage);
+  let r = document.createElement("p");
+  (r.className = "book-author"),
+    (r.innerHTML = `Author: ${this.author}`),
+    bookCard.appendChild(r);
+  let bookPages = document.createElement("p");
+  (bookPages.innerHTML = `Pages: ${this.pages}`),
+    bookCard.appendChild(bookPages);
+  let readStatusContainer = document.createElement("div");
+  bookCard.appendChild(readStatusContainer),
+    (readStatusContainer.className = "read-container");
+  let readStatusLabel = document.createElement("p");
+  (readStatusLabel.innerHTML = "Read:  "),
+    readStatusContainer.appendChild(readStatusLabel);
+  let switchLabel = document.createElement("label");
+  (switchLabel.className = "switch"),
+    readStatusContainer.appendChild(switchLabel);
+  let readStatus = document.createElement("input");
+  (readStatus.type = "checkbox"),
+    (readStatus.checked = readInput.checked),
+    (readStatus.id = "read-switch"),
+    switchLabel.appendChild(readStatus);
+  let switchSpan = document.createElement("span");
+  (switchSpan.className = "slider round"),
+    switchLabel.appendChild(switchSpan),
+    (localStorage[this.id] = JSON.stringify(this)),
+    document.querySelectorAll(".remove-book").forEach((bookCard) => {
+      bookCard.addEventListener("click", () => {
+        removeElement(this.id);
+      });
+    });
+}),
+  openFormButton.addEventListener("click", () => {
+    openForm();
+  }),
+  closeFormButton.addEventListener("click", () => {
+    closeForm();
+  }),
+  form.addEventListener("submit", validate),
+  library.forEach((book) => {
+    localStorage[book.id] = JSON.stringify(book);
+  }),
+  jsonToObject();
