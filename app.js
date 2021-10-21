@@ -60,7 +60,8 @@ function validate(e) {
           field.classList.remove("error");
         }, 500));
     }),
-    e.preventDefault();
+    form.reset();
+  e.preventDefault();
 }
 
 function jsonToObject() {
