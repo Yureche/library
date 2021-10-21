@@ -62,6 +62,7 @@ function validate(e) {
     }),
     e.preventDefault();
 }
+
 function jsonToObject() {
   library = [];
   for (let i = 0; i < localStorage.length; i++) {
@@ -116,7 +117,7 @@ function jsonToObject() {
     readStatusContainer.appendChild(switchLabel);
   let readStatus = document.createElement("input");
   (readStatus.type = "checkbox"),
-    (readStatus.checked = readInput.checked),
+    (readStatus.checked = this.read),
     (readStatus.id = "read-switch"),
     switchLabel.appendChild(readStatus);
   let switchSpan = document.createElement("span");
@@ -126,7 +127,13 @@ function jsonToObject() {
   removeBook.addEventListener("click", function (e) {
     removeElement(e.target.parentNode.id);
   });
+  readStatus.addEventListener("change", this.changeReadStatus);
 }),
+  (Book.prototype.changeReadStatus = function () {
+    thisBook = library[this.parentNode.parentNode.parentNode.id];
+    thisBook.read = !thisBook.read;
+    localStorage[thisBook.id] = JSON.stringify(thisBook);
+  }),
   openFormButton.addEventListener("click", () => {
     openForm();
   }),
